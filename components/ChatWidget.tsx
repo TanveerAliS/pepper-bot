@@ -21,7 +21,7 @@ export interface ChatMessage {
 }
 
 export const ChatWidget: React.FC<ChatWidgetProps> = ({
-  primaryColor = "#6366f1",
+  primaryColor = "#72419b",
   logoUrl,
   fontFamily = "inherit",
   darkMode = false,
@@ -34,14 +34,14 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({
   // Widget is closed by default, opens as modal on icon click
   const [open, setOpen] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
-  // Auth token from URL
-  const [authToken, setAuthToken] = useState<string | null>(() => {
+  // Auth token from URL (avoid hydration mismatch)
+  const [authToken, setAuthToken] = useState<string | null>(null);
+  useEffect(() => {
     if (typeof window !== "undefined") {
       const params = new URLSearchParams(window.location.search);
-      return params.get("authToken");
+      setAuthToken(params.get("authToken"));
     }
-    return null;
-  });
+  }, []);
 
   // Scroll to bottom on new message
   useEffect(() => {
@@ -208,7 +208,7 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({
                     {logoUrl && (
                       <Image src={logoUrl} alt="Logo" width={32} height={32} className="rounded" />
                     )}
-                    <span className="font-semibold text-lg">AI Chat</span>
+                    <span className="font-semibold text-lg">Papper Bot</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <button

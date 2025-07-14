@@ -4,6 +4,6 @@ export const exampleEmbedCode = `
   src="https://your-domain.com/widget?authToken=YOUR_TOKEN_HERE&primaryColor=%236366f1&logoUrl=https://yourcdn.com/logo.svg&darkMode=true"
   style="width: 400px; height: 600px; border: none; border-radius: 12px; box-shadow: 0 4px 32px rgba(0,0,0,0.12);"
   allow="clipboard-write"
-  title="AI Chat Widget"
+  title="Papper Bot Widget"
 ></iframe>
 `;
