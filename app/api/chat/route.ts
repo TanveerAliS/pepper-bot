@@ -17,7 +17,6 @@ export async function POST(req: Request) {
   try {
     const body = await req.json();
     let userMessage = "";
-    // Accept both { messages: [...] } and { message: "..." }
     if (Array.isArray(body.messages)) {
       userMessage = body.messages[body.messages.length - 1]?.content || "";
     } else if (typeof body.message === "string") {
