@@ -15,9 +15,18 @@ const bedrockAgentClient = new BedrockAgentRuntimeClient({
 
 export async function POST(req: Request) {
   try {
-    const { messages } = await req.json();
-
-    const userMessage = messages[messages.length - 1]?.content || "";
+    const body = await req.json();
+    let userMessage = "";
+    if (Array.isArray(body.messages)) {
+      userMessage = body.messages[body.messages.length - 1]?.content || "";
+    } else if (typeof body.message === "string") {
+      userMessage = body.message;
+    } else {
+      return new Response(
+        JSON.stringify({ error: "Invalid request: expected 'messages' array or 'message' string." }),
+        { status: 400, headers: { "Content-Type": "application/json" } }
+      );
+    }
     console.log("User message:", userMessage);
 
     const agentId = process.env.BEDROCK_AGENT_ID;
