@@ -9,7 +9,7 @@ const nextConfig: NextConfig = {
           {
             key: 'Content-Security-Policy',
             value:
-              "frame-ancestors 'self' http://de-flaconi.frontastic.io.local https://de-flaconi.frontastic.io.local test-poc-flaconi.frontastic.dev;",
+              "frame-ancestors 'self' http://de-flaconi.frontastic.io.local https://de-flaconi.frontastic.io.local;",
           },
           {
             key: 'Access-Control-Allow-Origin',
