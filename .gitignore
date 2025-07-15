@@ -1,4 +1,14 @@
-node_modules
+/node_modules
+/.next
+/out
+/.vercel
+/.nuxt
+/dist
+/.cache
+/.vscode
+/.idea
+.DS_Store
+*.log
+*.env
+*.env.local
 .github
-.next
-.env.local
