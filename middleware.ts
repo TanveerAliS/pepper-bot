@@ -4,13 +4,8 @@ import { NextResponse } from "next/server";
 // Example: Add CORS headers for iframe embedding
 export function middleware(request: NextRequest) {
   const response = NextResponse.next();
-  // Allow embedding in iframe from your deployment domain
+  // Allow embedding in iframe from your deployment domain (handled globally in next.config.js)
   response.headers.set("Access-Control-Allow-Origin", "*");
-  response.headers.set("X-Frame-Options", "ALLOWALL");
-  response.headers.set(
-    "Content-Security-Policy",
-    "frame-src 'self' https://pepper-ofkzig7d8-tanveeralims-projects.vercel.app;"
-  );
   return response;
 }
 
