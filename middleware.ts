@@ -6,6 +6,7 @@ export function middleware(request: NextRequest) {
   const response = NextResponse.next();
   // Allow embedding in iframe from your deployment domain (handled globally in next.config.js)
   response.headers.set("Access-Control-Allow-Origin", "*");
+  response.headers.set("X-Frame-Options", "ALLOWALL");
   return response;
 }
 
