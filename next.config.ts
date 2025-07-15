@@ -7,8 +7,17 @@ const nextConfig: NextConfig = {
         source: '/(.*)',
         headers: [
           {
+            key: 'Content-Security-Policy',
+            value:
+              "frame-ancestors 'self' http://de-flaconi.frontastic.io.local;",
+          },
+          {
             key: 'X-Frame-Options',
-            value: 'ALLOWALL', // Remove or set to ALLOWALL to permit embedding
+            value: 'ALLOW-FROM http://de-flaconi.frontastic.io.local',
+          },
+          {
+            key: 'Access-Control-Allow-Origin',
+            value: '*', // Adjust this for your security needs
           },
         ],
       },
