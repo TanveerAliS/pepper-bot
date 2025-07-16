@@ -13,7 +13,7 @@ const nextConfig: NextConfig = {
           },
           {
             key: 'X-Frame-Options',
-            value: 'ALLOWALL',
+            value: 'SAMEORIGIN',
           },
           {
             key: 'Access-Control-Allow-Origin',
