@@ -17,7 +17,7 @@ const nextConfig: NextConfig = {
           },
           {
             key: 'Access-Control-Allow-Origin',
-            value: '*', // Adjust this for your security needs
+            value: 'SAMEORIGIN',
           },
         ],
       },
