@@ -35,13 +35,14 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({
   const [open, setOpen] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   // Auth token from URL (avoid hydration mismatch)
-  const [authToken, setAuthToken] = useState<string | null>(null);
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const params = new URLSearchParams(window.location.search);
-      setAuthToken(params.get("authToken"));
-    }
-  }, []);
+  // Auth token logic disabled for testing
+  const [authToken, setAuthToken] = useState<string | null>("test-token");
+  // useEffect(() => {
+  //   if (typeof window !== "undefined") {
+  //     const params = new URLSearchParams(window.location.search);
+  //     setAuthToken(params.get("authToken"));
+  //   }
+  // }, []);
 
   // Scroll to bottom on new message
   useEffect(() => {
@@ -90,9 +91,7 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({
         body: JSON.stringify({ message: input }),
       });
       if (res.status === 401 || res.status === 403) {
-        setAuthToken(null);
-        localStorage.removeItem("pepperbot_auth_token");
-        // Optionally show error in UI, but just hide widget for now
+        // Ignore auth errors for testing
         return;
       }
       if (!res.ok) throw new Error("Network error");
@@ -166,8 +165,8 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({
   // Always render the floating button, open modal on click
   return (
     <>
-      {/* Floating chat icon button (only if authToken present) */}
-      {authToken && !open && (
+      {/* Floating chat icon button (always visible for testing) */}
+      {!open && (
         <button
           className="fixed bottom-6 right-6 z-50 bg-[var(--primaryColor)] text-white rounded-full p-4 shadow-lg focus:outline-none focus:ring-2"
           style={{ backgroundColor: primaryColor }}
@@ -194,13 +193,8 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({
             role="dialog"
             aria-modal="true"
           >
-            {/* If no authToken in URL, show nothing or a message */}
-            {!authToken ? (
-              <div className="flex flex-col items-center justify-center flex-1 p-8">
-                <span className="text-lg font-semibold mb-2 text-red-600">Access denied</span>
-                <span className="text-gray-500">No access token found in URL.</span>
-              </div>
-            ) : (
+            {/* Always show chat for testing */}
+            <>
               <>
                 {/* Header */}
                 <div className="flex items-center justify-between p-4 border-b dark:border-gray-700 bg-gray-50 dark:bg-gray-800">
@@ -312,7 +306,7 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({
                   </button>
                 </form>
               </>
-            )}
+            </>
           </div>
         </>
       )}
