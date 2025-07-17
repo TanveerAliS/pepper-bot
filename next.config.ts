@@ -8,16 +8,11 @@ const nextConfig: NextConfig = {
         headers: [
           {
             key: 'Content-Security-Policy',
-            value:
-              "frame-ancestors 'self' http://de-flaconi.frontastic.io.local https://de-flaconi.frontastic.io.local;",
+            value: "frame-ancestors *;",
           },
           {
             key: 'X-Frame-Options',
             value: 'SAMEORIGIN',
-          },
-          {
-            key: 'Access-Control-Allow-Origin',
-            value: '*', // Adjust this for your security needs
           },
         ],
       },
