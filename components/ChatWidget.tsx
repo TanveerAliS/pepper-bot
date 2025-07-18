@@ -181,7 +181,7 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({
       {open && (
         <>
           <div
-            className="fixed inset-0 z-50 bg-black/30 backdrop-blur-sm transition-opacity"
+            className="fixed inset-0 z-50 transition-opacity"
             aria-hidden="true"
             onClick={() => setOpen(false)}
           />
